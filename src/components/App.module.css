@@ -1,0 +1,17 @@
+/* App.module.css */
+
+.section {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+}
+
+.mainHeader {
+  margin-bottom: 20px;
+}
+
+.secondaryHeader {
+  margin-bottom: 20px;
+}
