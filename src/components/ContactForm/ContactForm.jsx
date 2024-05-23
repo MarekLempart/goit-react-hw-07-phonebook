@@ -7,7 +7,7 @@ import { addContact } from '../../redux/operations';
 import { selectContacts } from '../../redux/selectors';
 import css from './ContactForm.module.css';
 
-export const ContactForm = ({ onChanges }) => {
+export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
@@ -17,7 +17,7 @@ export const ContactForm = ({ onChanges }) => {
     const contact = {
       id: nanoid(),
       name: event.currentTarget.elements.name.value,
-      number: event.currentTarget.elements.number.value,
+      phone: event.currentTarget.elements.phone.value,
     };
 
     const isExist = contacts.find(
@@ -30,7 +30,6 @@ export const ContactForm = ({ onChanges }) => {
 
     dispatch(addContact(contact));
     event.currentTarget.reset();
-    onChanges();
   };
 
   return (
@@ -48,11 +47,11 @@ export const ContactForm = ({ onChanges }) => {
         />
       </label>
       <label className={css.label} htmlFor={nanoid()}>
-        Number
+        Phone
         <input
           className={css.input}
           type="tel"
-          name="number"
+          name="phone"
           pattern="^\+((?:9[679]|8[035789]|6[789]|5[90]|42|3[578]|2[1-689])|9[0-58]|8[1246]|6[0-6]|5[1-8]|4[013-9]|3[0-469]|2[70]|7|1)(?:\W*\d){0,13}\d$"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           id={nanoid()}

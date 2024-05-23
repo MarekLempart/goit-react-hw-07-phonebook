@@ -1,6 +1,7 @@
 // ContactList.jsx
 
 import { useEffect } from 'react';
+import { GrContactInfo } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from '../../redux/operations';
 import {
@@ -8,11 +9,9 @@ import {
   selectFilteredContacts,
   selectIsLoading,
 } from '../../redux/selectors';
-// import { deleteContact } from '../../redux/contactsSlice';
-// import { getContacts, getFilter } from '../../redux/selectors';
 import css from './ContactList.module.css';
 
-export const ContactList = ({ onChanges }) => {
+export const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -26,33 +25,17 @@ export const ContactList = ({ onChanges }) => {
     dispatch(deleteContact(id));
   };
 
-  // const contacts = useSelector(getContacts);
-  // const filter = useSelector(getFilter);
-  // const dispatch = useDispatch();
-
-  // const filteredContacts = contacts?.filter(contact =>
-  //   contact?.name?.toLowerCase().includes(filter.toLowerCase())
-  // );
-
-  // const onDeleteContact = id => {
-  //   dispatch(deleteContact(id));
-  //   onChanges();
-  // };
-
-  // if (!filteredContacts?.length) {
-  //   return <p className={css.text}>No contacts found.</p>;
-  // }
-
   return (
     <>
       {isLoading && <p>Loading contacts...</p>}
       {error && <p className={css.error}>Error: {error}</p>}
 
       <ul className={css.list}>
-        {filteredContacts.map(({ id, name, number }) => (
+        {filteredContacts.map(({ id, name, phone }) => (
           <li className={css.item} key={id}>
+            <GrContactInfo size={20} />
             <p className={css.text}>
-              {name}: {number}
+              {name}: {phone}
             </p>
             <button
               className={css.button}
