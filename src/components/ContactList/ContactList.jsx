@@ -27,9 +27,12 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && <p>Loading contacts...</p>}
-      {error && <p className={css.error}>Error: {error}</p>}
+      {isLoading && <div className={css.spinner} />}
 
+      {!filteredContacts?.length && !error && !isLoading && (
+        <p className={css.text}>No contacts found.</p>
+      )}
+      {error && <p className={css.error}>Error: {error}</p>}
       <ul className={css.list}>
         {filteredContacts.map(({ id, name, phone }) => (
           <li className={css.item} key={id}>
